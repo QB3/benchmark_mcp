@@ -43,6 +43,7 @@ class Solver(BaseSolver):
     @staticmethod
     def reweighted(X, y, lmbd, gamma, n_iter, n_iter_weighted):
         # First weights is equivalent to a simple Lasso
+        X = X[0]  # dirty fix for sparse matrices
         weights = lmbd * np.ones(X.shape[1])
         clf = WeightedLasso(alpha=1, tol=1e-12,
                             fit_intercept=False,
